@@ -8,7 +8,8 @@ package com.mycompany.restauranteelbuensabor;
  *
  * @author alfre
  */
-public class Utilidades {
+public class
+Utilidades {
 public static double calcular(double pr,double cn,double dc,double iv,double pp,int ni,boolean ap){
 double res=0;double tmp=0;double aux2=0;
 // calcula el resultado
