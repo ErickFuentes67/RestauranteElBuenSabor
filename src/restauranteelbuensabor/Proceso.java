@@ -46,10 +46,7 @@ public class Proceso {
                 }
             }// fin if sub>0
 
-            // version anterior - no borrar
-            // sub = sub * 1.19;
-            // if(sub > 40000) sub = sub + (sub*0.10);
-            // return sub;
+
         }
         else{
             if(subtotal>50000){
