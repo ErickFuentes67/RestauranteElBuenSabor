@@ -35,8 +35,8 @@ public class Utilidades {
     public static boolean validar(){
 
         int cont=0;int indice=0;
-        while(indice<Datos.cant.length){
-            if(Datos.cant[indice]>0){cont=cont+1;}
+        while(indice<Datos.cantidades.length){
+            if(Datos.cantidades[indice]>0){cont=cont+1;}
             indice++;
         }// fin while
 
@@ -51,8 +51,8 @@ public class Utilidades {
 
     public static void reiniciar(){
 
-        int indice=0;while(indice<Datos.cant.length){
-            Datos.cant[indice]=0;indice++;
+        int indice=0;while(indice<Datos.cantidades.length){
+            Datos.cantidades[indice]=0;indice++;
         }
 
         Datos.total=0;Datos.estadoMesa=0;Datos.numeroMesaActual=0;Datos.tmp="";

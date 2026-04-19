@@ -12,18 +12,18 @@ package com.mycompany.restauranteelbuensabor;
  *
  */
 
-public class Proceso {
+public class CalculadorFactura {
 
-    public static double hacerTodo(){
+    public static double CalcularTotalFactura(){
 
         double subtotal=0;double iva=0;double total=0;double aux=0;int cont=0;int indice=0;
 
         while(indice<Datos.nombres.length){
 
-            if(Datos.cant[indice]>0){
+            if(Datos.cantidades[indice]>0){
 
                 // multiplica precio por cantidad
-                subtotal=subtotal+Datos.p[indice]*Datos.cant[indice];
+                subtotal=subtotal+Datos.precios[indice]*Datos.cantidades[indice];
                 cont=cont+1;
             }
             indice++;
