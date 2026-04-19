@@ -16,17 +16,17 @@ public class Proceso {
 
     public static double hacerTodo(){
 
-        double subtotal=0;double iva=0;double total=0;double aux=0;int cont=0;int i=0;
+        double subtotal=0;double iva=0;double total=0;double aux=0;int cont=0;int indice=0;
 
-        while(i<Datos.nombres.length){
+        while(indice<Datos.nombres.length){
 
-            if(Datos.cant[i]>0){
+            if(Datos.cant[indice]>0){
 
                 // multiplica precio por cantidad
-                subtotal=subtotal+Datos.p[i]*Datos.cant[i];
+                subtotal=subtotal+Datos.p[indice]*Datos.cant[indice];
                 cont=cont+1;
             }
-            i++;
+            indice++;
         }// fin while
 
         if(cont>3){
@@ -66,7 +66,7 @@ public class Proceso {
             }
         }// fin if-else cont
 
-        Datos.est=1;Datos.total=total;
+        Datos.estadoMesa=1;Datos.total=total;
         return total;
 
     }

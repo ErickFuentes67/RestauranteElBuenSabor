@@ -34,10 +34,10 @@ public class Utilidades {
 
     public static boolean validar(){
 
-        int cont=0;int i=0;
-        while(i<Datos.cant.length){
-            if(Datos.cant[i]>0){cont=cont+1;}
-            i++;
+        int cont=0;int indice=0;
+        while(indice<Datos.cant.length){
+            if(Datos.cant[indice]>0){cont=cont+1;}
+            indice++;
         }// fin while
 
         // reinicia si no hay nada - efecto secundario no documentado
@@ -68,10 +68,10 @@ public class Utilidades {
         // else{ sub=sub+(sub*0.19); }
         // Datos.total=sub;
 
-        int i=0;while(i<Datos.cant.length){
-            Datos.cant[i]=0;i++;
+        int indice=0;while(indice<Datos.cant.length){
+            Datos.cant[indice]=0;indice++;
         }
 
-        Datos.total=0;Datos.est=0;Datos.numeroMesaActual=0;Datos.tmp="";
+        Datos.total=0;Datos.estadoMesa=0;Datos.numeroMesaActual=0;Datos.tmp="";
     }
 }
