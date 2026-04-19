@@ -16,33 +16,33 @@ public class Proceso {
 
     public static double hacerTodo(){
 
-        double sub=0;double iva=0;double tot=0;double aux=0;int cont=0;int i=0;
+        double subtotal=0;double iva=0;double total=0;double aux=0;int cont=0;int i=0;
 
-        while(i<Datos.nom.length){
+        while(i<Datos.nombres.length){
 
             if(Datos.cant[i]>0){
 
                 // multiplica precio por cantidad
-                sub=sub+Datos.p[i]*Datos.cant[i];
+                subtotal=subtotal+Datos.p[i]*Datos.cant[i];
                 cont=cont+1;
             }
             i++;
         }// fin while
 
         if(cont>3){
-            if(sub>0){
-                aux=sub-(sub*0.05);
+            if(subtotal>0){
+                aux=subtotal-(subtotal*0.05);
 
                 if(aux>50000){
                     iva=aux*0.19;
                     // suma iva al subtotal con descuento
-                    tot=aux+iva;
-                    tot=tot+(tot*0.10);
+                    total=aux+iva;
+                    total=total+(total*0.10);
                 }
                 else{
                     // suma iva al subtotal
                     iva=aux*0.19;
-                    tot=aux+iva;
+                    total=aux+iva;
                 }
             }// fin if sub>0
 
@@ -52,22 +52,22 @@ public class Proceso {
             // return sub;
         }
         else{
-            if(sub>50000){
-                iva=sub*0.19;
+            if(subtotal>50000){
+                iva=subtotal*0.19;
 
                 // suma iva al subtotal
-                tot=sub+iva;
-                tot=tot+(tot*0.10);
+                total=subtotal+iva;
+                total=total+(total*0.10);
             }
 
             else{
-                iva=sub*0.19;
-                tot=sub+iva;
+                iva=subtotal*0.19;
+                total=subtotal+iva;
             }
         }// fin if-else cont
 
-        Datos.est=1;Datos.tot=tot;
-        return tot;
+        Datos.est=1;Datos.total=total;
+        return total;
 
     }
 

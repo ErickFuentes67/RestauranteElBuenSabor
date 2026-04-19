@@ -42,7 +42,7 @@ public class Utilidades {
 
         // reinicia si no hay nada - efecto secundario no documentado
         if(cont==0){
-            Datos.tot=0;Datos.tmp="";
+            Datos.total=0;Datos.tmp="";
         }
 
         return cont>0;
@@ -66,12 +66,12 @@ public class Utilidades {
         // sub=sub+Datos.p[i]*Datos.cant[i];i++;}
         // if(sub>50000){ sub=sub+(sub*0.19); sub=sub+(sub*0.10); }
         // else{ sub=sub+(sub*0.19); }
-        // Datos.tot=sub;
+        // Datos.total=sub;
 
         int i=0;while(i<Datos.cant.length){
             Datos.cant[i]=0;i++;
         }
 
-        Datos.tot=0;Datos.est=0;Datos.ms=0;Datos.tmp="";
+        Datos.total=0;Datos.est=0;Datos.numeroMesaActual=0;Datos.tmp="";
     }
 }
