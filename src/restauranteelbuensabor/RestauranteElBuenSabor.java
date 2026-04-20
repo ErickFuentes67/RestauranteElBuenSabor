@@ -42,6 +42,10 @@ public class RestauranteElBuenSabor {
                 opcionGenerarFactura();
             }
 
+            else if (opcionMenu == 5) {
+               opcionNuevaMesa();
+            }
+
             else if (opcionMenu == 0) {
                 ejecutando = false;
                 System.out.println("Hasta luego!");
@@ -53,8 +57,6 @@ public class RestauranteElBuenSabor {
         }
 
         scanner.close();
-
-
 
     }
 
@@ -134,7 +136,11 @@ public class RestauranteElBuenSabor {
         }
     }
 
-
-
+    private static void opcionNuevaMesa() {
+        System.out.println();
+        Utilidades.reiniciar();
+        System.out.println("Mesa reiniciada. Lista para nuevo cliente.");
+        System.out.println();
+    }
 
 }
