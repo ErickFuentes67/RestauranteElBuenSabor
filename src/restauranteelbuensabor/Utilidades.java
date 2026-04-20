@@ -15,18 +15,13 @@ package restauranteelbuensabor;
 public class Utilidades {
 
     public static boolean hayProductosEnPedido() {
-        for (Producto producto : Datos.carta) {
-            if (producto.getCantidad() > 0) return true;
-        }
-        return false;
+        return Datos.pedidoActual.tieneProductos(); // Pedido ya sabe si tiene items
     }
 
     public static void reiniciar() {
-        for (Producto producto : Datos.carta) {
-            producto.reiniciar(); // el objeto sabe reiniciarse solo
-        }
-        Datos.total = 0;
-        Datos.estadoMesa = 0;
+        Datos.pedidoActual.limpiar();               // Pedido sabe limpiarse solo
+        Datos.total            = 0;
+        Datos.estadoMesa       = 0;
         Datos.numeroMesaActual = 0;
     }
 }

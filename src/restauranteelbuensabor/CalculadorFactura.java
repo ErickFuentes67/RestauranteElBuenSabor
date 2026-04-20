@@ -13,11 +13,11 @@ package restauranteelbuensabor;
 
 public class CalculadorFactura {
 
-    private static final double Tasa_IVA = 0.19;
-    private static final double Tasa_Propina   = 0.10;
-    private static final double Tasa_Descuento = 0.05;
-    private static final double Umbral_Propina = 50000;
-    private static final int    Min_Items_Descuento = 3;
+    private static final double TASA_IVA          = 0.19;
+    private static final double TASA_PROPINA       = 0.10;
+    private static final double TASA_DESCUENTO     = 0.05;
+    private static final double UMBRAL_PROPINA     = 50000;
+    private static final int    MIN_ITEMS_DESCUENTO = 3;
 
     public static ResultadoFactura calcularTotalFactura() {
         double subtotal      = Datos.pedidoActual.calcularSubtotal();
@@ -32,23 +32,21 @@ public class CalculadorFactura {
         return new ResultadoFactura(conDescuento, iva, propina);
     }
 
-
     private static double aplicarDescuento(double subtotal, int cantidadItems) {
-        if (cantidadItems > Min_Items_Descuento) {
-            return subtotal - (subtotal * Tasa_Descuento);
+        if (cantidadItems > MIN_ITEMS_DESCUENTO) {
+            return subtotal - (subtotal * TASA_DESCUENTO);
         }
         return subtotal;
     }
 
     private static double calcularIVA(double base) {
-        return base * Tasa_IVA;
+        return base * TASA_IVA;
     }
 
     private static double calcularPropina(double base) {
-        if (base > Umbral_Propina) {
-            return base * Tasa_Propina;
+        if (base > UMBRAL_PROPINA) {
+            return base * TASA_PROPINA;
         }
         return 0;
     }
-
 }
