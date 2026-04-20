@@ -7,6 +7,7 @@ package restauranteelbuensabor;
 
 public class Factura {
 
+    // Tasas según normativa DIAN Colombia
     private static final double TASA_IVA           = 0.19;
     private static final double TASA_PROPINA        = 0.10;
     private static final double TASA_DESCUENTO      = 0.05;
