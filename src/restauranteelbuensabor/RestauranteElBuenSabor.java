@@ -6,7 +6,6 @@ package restauranteelbuensabor;
 
 import java.util.Scanner;
 
-
 /**
  *
  * @author alfre
