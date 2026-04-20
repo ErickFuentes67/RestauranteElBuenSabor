@@ -28,13 +28,17 @@ public class RestauranteElBuenSabor {
 
             if (opcionMenu == 1) {
                 opcionVerCarta();
-
-
             }
+
+            else if (opcionMenu == 2){
+                opcionAgregarProducto();
+            }
+
             else if (opcionMenu == 0) {
                 ejecutando = false;
                 System.out.println("Hasta luego!");
             }
+
             else {
                 System.out.println("Opcion no valida. Seleccione entre 0 y 5.");
             }
@@ -61,6 +65,20 @@ public class RestauranteElBuenSabor {
     private static void opcionVerCarta() {
         ImpresionFactura.mostrarCarta();
         System.out.println();
+    }
+
+    private static void opcionAgregarProducto() {
+        System.out.println("--- AGREGAR PRODUCTO ---");
+        System.out.print("Numero de producto (1-" + Datos.carta.length + "): ");
+        int n = scanner.nextInt();
+        System.out.print("Cantidad: ");
+        int cantidad = scanner.nextInt();
+
+        if (n <= 0 || n > Datos.carta.length) {
+            System.out.println("Producto no existe. La carta tiene " + Datos.carta.length + " productos.");
+            System.out.println();
+            return;
+        }
     }
 
 }
