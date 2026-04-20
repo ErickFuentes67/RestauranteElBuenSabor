@@ -25,9 +25,7 @@ public class Datos {
     };
 
     public static Pedido pedidoActual = new Pedido();
-
     public static int numeroMesaActual = 0;
     public static int estadoMesa = 0;
-    public static double total = 0;
     public static int numeroFactura = 1;
 }
