@@ -15,48 +15,51 @@ package restauranteelbuensabor;
 
 public class ImpresionFactura {
 
-    private static final String NOMBRE_RESTAURANTE  = "El Buen Sabor";
-    private static final String DIRECCION           = "Calle 15 #8-32, Valledupar";
-    private static final String NIT                 = "900.123.456-7";
+    private static final String Nombre_Restaurante  = "     El Buen Sabor    ";
+    private static final String Direccion           = "Calle 15 #8-32, Valledupar";
+    private static final String Nit                 = "900.123.456-7";
+    public static final String Separador           = "========================================";
 
     public static void mostrarCarta(){
 
-        System.out.println("========================================");
-        System.out.println("    RESTAURAnTE EL BUEn SABOR");
-        System.out.println("    --- nUESTRA CARTA ---");
-        System.out.println("========================================");
+        System.out.println(Separador);
+        System.out.println(Nombre_Restaurante);
+        System.out.println("    --- NUESTRA CARTA ---");
+        System.out.println(Separador);
         int indice=0;
 
-        while(indice<Datos.nombres.length){
-            System.out.printf("%d. %-22s $%,.0f%n",(indice+1),Datos.nombres[indice],Datos.precios[indice]);
-            indice++;
-        }// fin while
+        for (int i = 0; i < Datos.nombres.length; i++) {
+            System.out.printf("%d. %-22s $%,.0f%n",
+                    (i + 1),
+                    Datos.nombres[i],
+                    Datos.precios[i]);
+        }
 
-        System.out.println("========================================");
+        System.out.println(Separador);
 
     }
 
     public static void mostrarPedido(){
 
-        double subtotal=0;int indice=0;
+        double subtotal=0;
+
         System.out.println("--- PEDIDO ACTUAL ---");
 
-        while(indice<Datos.nombres.length){
+        for (int i = 0; i < Datos.nombres.length; i++) {
+            if (Datos.cantidades[i] > 0) {
+                double subtotalItem = Datos.precios[i] * Datos.cantidades[i];
 
-            if(Datos.cantidades[indice]>0){
-                // imprime producto con cantidad y subtotal parcial
-                System.out.printf("%-20s x%-6d $%,.0f%n",Datos.nombres[indice],Datos.cantidades[indice],(Datos.precios[indice]*Datos.cantidades[indice]));
+                System.out.printf("%-20s x%-6d $%,.0f%n",
+                        Datos.nombres[i],
+                        Datos.cantidades[i],
+                        subtotalItem);
 
-                // suma al subtotal
-                subtotal=subtotal+Datos.precios[indice]*Datos.cantidades[indice];
+                subtotal += subtotalItem;
             }
-
-            indice++;
-
-        }// fin while
+        }
 
         System.out.println("--------------------");
-        System.out.printf("%-27s $%,.0f%n","Subtotal:",subtotal);
+        System.out.printf("%-27s $%,.0f%n", "Subtotal:", subtotal);
 
     }
 

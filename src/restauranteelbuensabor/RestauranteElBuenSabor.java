@@ -17,14 +17,22 @@ import java.util.Scanner;
 public class RestauranteElBuenSabor {
     public static void main(String[] args) {
 
+        final String Separador;
+        Separador = "========================================";
         Scanner scanner =new Scanner(System.in);
-        int opcionMenu=0;boolean flag=true;int x=0;String aux="";int tmp=0;double numeroMesa=0;boolean continuar=true;
+        int opcionMenu=0;
+        boolean flag=true;
+        int x=0;
+        String aux="";
+        int tmp=0;
+        double numeroMesa=0;
+        boolean continuar=true;
 
-        System.out.println("========================================");
+        System.out.println(Separador);
         System.out.println("    RESTAURANTE EL BUEN SABOR");
         System.out.println("    Calle 15 #8-32, Valledupar");
         System.out.println("    NIT: 900.123.456-7");
-        System.out.println("========================================");
+        System.out.println(Separador);
 
         while(flag){
             System.out.println("1. Ver carta");
@@ -34,7 +42,7 @@ public class RestauranteElBuenSabor {
             System.out.println("5. Nueva mesa");
             System.out.println("0. Salir");
 
-            System.out.println("========================================");
+            System.out.println(Separador);
             System.out.print("Seleccione una opcion: ");
 
             opcionMenu=scanner.nextInt();
