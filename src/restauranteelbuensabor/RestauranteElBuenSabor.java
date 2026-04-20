@@ -57,15 +57,17 @@ public class RestauranteElBuenSabor {
 
             else if(opcionMenu==2){
 
-                // agregar producto
+
                 System.out.println("--- AGREGAR PRODUCTO ---");
-                System.out.print("Numero de producto (1-"+Datos.nombres.length+"): ");
+                System.out.print("Numero de producto (1-"+Datos.carta.length
++"): ");
 
                 int n=scanner.nextInt();
                 System.out.print("Cantidad: ");
                 int cantidad=scanner.nextInt();
 
-                if(n>0&&n<=Datos.nombres.length){
+                if(n>0&&n<=Datos.carta.length
+){
 
                     if(cantidad>0){
 
@@ -92,10 +94,8 @@ public class RestauranteElBuenSabor {
                         }// fin if est==0
 
                         // agrega al pedido
-                        Datos.cantidades[n-1]=Datos.cantidades[n-1]+cantidad;
-                        System.out.println("Producto agregado al pedido.");
-                        System.out.println("  -> "+Datos.nombres[n-1]+" x"+cantidad);
-                        numeroMesa=Datos.precios[n-1]*cantidad;
+                        Datos.carta[n - 1].agregarCantidad(cantidad);
+                        System.out.println("  -> " + Datos.carta[n - 1].getNombre() + " x" + cantidad);
 
                     }
 
@@ -128,7 +128,8 @@ public class RestauranteElBuenSabor {
 
                     else{
 
-                     System.out.println("Producto no existe. La carta tiene "+Datos.nombres.length+" productos.");
+                     System.out.println("Producto no existe. La carta tiene "+Datos.carta.length
++" productos.");
                     }
 
                 }// fin if n>0

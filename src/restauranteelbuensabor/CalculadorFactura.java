@@ -56,25 +56,19 @@ public class CalculadorFactura {
 
     private static double calcularSubtotal() {
         double subtotal = 0;
-
-        for (int i = 0; i < Datos.nombres.length; i++) {
-            if (Datos.cantidades[i] > 0) {
-                subtotal += Datos.precios[i] * Datos.cantidades[i];
-            }
+        for (Producto producto : Datos.carta) {
+            subtotal += producto.calcularSubtotal(); // el objeto ya sabe calcularlo
         }
-
         return subtotal;
     }
 
     private static int contarItems() {
         int contador = 0;
-
-        for (int i = 0; i < Datos.nombres.length; i++) {
-            if (Datos.cantidades[i] > 0) {
+        for (Producto producto : Datos.carta) {
+            if (producto.getCantidad() > 0) {
                 contador++;
             }
         }
-
         return contador;
     }
 

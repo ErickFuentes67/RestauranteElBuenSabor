@@ -1,11 +1,8 @@
 package restauranteelbuensabor;
 
-/*
-*
-*  Representa un producto de la carta con su cantidad pedida.
-*
-*/
-
+/**
+ * Representa un producto de la carta con su cantidad pedida.
+ */
 public class Producto {
 
     private final String nombre;
@@ -30,4 +27,7 @@ public class Producto {
         this.cantidad = 0;
     }
 
+    public double calcularSubtotal() {
+        return precio * cantidad;
+    }
 }

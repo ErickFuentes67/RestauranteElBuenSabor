@@ -23,12 +23,12 @@ public class ImpresionFactura {
     }
 
     private static void imprimirItems() {
-        for (int i = 0; i < Datos.nombres.length; i++) {
-            if (Datos.cantidades[i] > 0) {
+        for (Producto producto : Datos.carta) {
+            if (producto.getCantidad() > 0) {
                 System.out.printf("%-20s x%-6d $%,.0f%n",
-                        Datos.nombres[i],
-                        Datos.cantidades[i],
-                        Datos.precios[i] * Datos.cantidades[i]);
+                        producto.getNombre(),
+                        producto.getCantidad(),
+                        producto.calcularSubtotal());
             }
         }
     }
@@ -40,47 +40,26 @@ public class ImpresionFactura {
     public static final String Separador           = "========================================";
 
 
-    public static void mostrarCarta(){
-
-        System.out.println(Separador);
-        System.out.println(Nombre_Restaurante);
-        System.out.println("    --- NUESTRA CARTA ---");
-        System.out.println(Separador);
-        int indice=0;
-
-        for (int i = 0; i < Datos.nombres.length; i++) {
+    public static void mostrarCarta() {
+        int numero = 1;
+        for (Producto producto : Datos.carta) {
             System.out.printf("%d. %-22s $%,.0f%n",
-                    (i + 1),
-                    Datos.nombres[i],
-                    Datos.precios[i]);
+                    numero++, producto.getNombre(), producto.getPrecio());
         }
-
-        System.out.println(Separador);
-
     }
 
-    public static void mostrarPedido(){
-
-        double subtotal=0;
-
-        System.out.println("--- PEDIDO ACTUAL ---");
-
-        for (int i = 0; i < Datos.nombres.length; i++) {
-            if (Datos.cantidades[i] > 0) {
-                double subtotalItem = Datos.precios[i] * Datos.cantidades[i];
-
+    public static void mostrarPedido() {
+        double subtotal = 0;
+        for (Producto producto : Datos.carta) {
+            if (producto.getCantidad() > 0) {
                 System.out.printf("%-20s x%-6d $%,.0f%n",
-                        Datos.nombres[i],
-                        Datos.cantidades[i],
-                        subtotalItem);
-
-                subtotal += subtotalItem;
+                        producto.getNombre(),
+                        producto.getCantidad(),
+                        producto.calcularSubtotal());
+                subtotal += producto.calcularSubtotal();
             }
         }
-
-        System.out.println("--------------------");
         System.out.printf("%-27s $%,.0f%n", "Subtotal:", subtotal);
-
     }
 
 
