@@ -24,6 +24,8 @@ public class Datos {
             new Producto("Arroz con Pollo",     25000)
     };
 
+    public static Pedido pedidoActual = new Pedido();
+
     public static int numeroMesaActual = 0;
     public static int estadoMesa = 0;
     public static double total = 0;
