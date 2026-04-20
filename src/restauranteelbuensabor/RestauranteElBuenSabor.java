@@ -60,14 +60,14 @@ public class RestauranteElBuenSabor {
     }
 
     private static void mostrarMenu() {
-        System.out.println(ImpresionFactura.Separador);
+        System.out.println("====================");
         System.out.println("1. Ver carta");
         System.out.println("2. Agregar producto al pedido");
         System.out.println("3. Ver pedido actual");
         System.out.println("4. Generar factura");
         System.out.println("5. Nueva mesa");
         System.out.println("0. Salir");
-        System.out.println(ImpresionFactura.Separador);
+        System.out.println("=====================");
         System.out.print("Seleccione una opcion: ");
     }
 

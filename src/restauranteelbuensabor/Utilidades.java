@@ -20,7 +20,6 @@ public class Utilidades {
 
     public static void reiniciar() {
         Datos.pedidoActual.limpiar();               // Pedido sabe limpiarse solo
-        Datos.total            = 0;
         Datos.estadoMesa       = 0;
         Datos.numeroMesaActual = 0;
     }
