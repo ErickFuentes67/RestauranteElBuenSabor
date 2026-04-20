@@ -29,6 +29,16 @@ public class Pedido {
         return items.size();
     }
 
+    public double calcularSubtotal() {
+        double subtotal = 0;
+        for (ItemPedido item : items) {
+            subtotal += item.calcularSubtotal();
+        }
+        return subtotal;
+    }
 
+    public void limpiar() {
+        items.clear();
+    }
 
 }
