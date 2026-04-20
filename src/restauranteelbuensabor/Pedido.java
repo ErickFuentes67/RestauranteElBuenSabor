@@ -17,6 +17,18 @@ public class Pedido {
         items.add(new ItemPedido(producto, cantidad)); // si no existe, lo agrega
     }
 
+    public List<ItemPedido> getItems() {
+        return items;
+    }
+
+    public boolean tieneProductos() {
+        return !items.isEmpty();
+    }
+
+    public int contarItemsDiferentes() {
+        return items.size();
+    }
+
 
 
 }
