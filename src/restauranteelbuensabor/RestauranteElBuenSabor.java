@@ -35,7 +35,7 @@ public class RestauranteElBuenSabor {
             }
 
             else if (opcionMenu == 3){
-
+                opcionVerPedido();
             }
 
             else if (opcionMenu == 0) {
@@ -106,6 +106,19 @@ public class RestauranteElBuenSabor {
             Datos.estadoMesa = 1;
         }
     }
+
+    private static void opcionVerPedido() {
+        System.out.println();
+        if (Utilidades.hayProductosEnPedido()) {
+            ImpresionFactura.mostrarPedido();
+        } else {
+            System.out.println("No hay productos en el pedido actual.");
+            System.out.println("Use la opcion 2 para agregar productos.");
+        }
+        System.out.println();
+    }
+
+
 
 
 }
