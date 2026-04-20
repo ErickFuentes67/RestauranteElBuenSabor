@@ -33,33 +33,6 @@ public class CalculadorFactura {
     }
 
 
-    public static double CalcularTotalFactura(){
-
-        double subtotal = calcularSubtotal();
-        int cantidadItems = contarItems();
-
-        double subtotalConDescuento = aplicarDescuento(subtotal, cantidadItems);
-        double iva = calcularIVA(subtotalConDescuento);
-        double propina = calcularPropina(subtotalConDescuento);
-
-        double total = subtotalConDescuento + iva + propina;
-
-        // ⚠️ esto idealmente debería salir de aquí (Nivel 4)
-        Datos.estadoMesa = 1;
-        Datos.total = total;
-
-        return total;
-
-    }
-
-    private static double calcularSubtotal() {
-        double subtotal = 0;
-        for (Producto producto : Datos.carta) {
-            subtotal += producto.calcularSubtotal();
-        }
-        return subtotal;
-    }
-
     private static int contarItems() {
         int contador = 0;
         for (Producto producto : Datos.carta) {
