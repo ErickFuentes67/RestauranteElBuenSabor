@@ -97,19 +97,10 @@ public class RestauranteElBuenSabor {
 
         activarMesaSiEsNecesario();
 
-        Datos.carta[n - 1].agregarCantidad(cantidad);
+        Datos.pedidoActual.agregarItem(Datos.carta[n - 1], cantidad); // ← usa Pedido
         System.out.println("Producto agregado al pedido.");
         System.out.println("  -> " + Datos.carta[n - 1].getNombre() + " x" + cantidad);
         System.out.println();
-    }
-
-    private static void activarMesaSiEsNecesario() {
-        if (Datos.estadoMesa == 0) {
-            System.out.print("Ingrese numero de mesa: ");
-            int mesa = scanner.nextInt();
-            Datos.numeroMesaActual = mesa > 0 ? mesa : 1;
-            Datos.estadoMesa = 1;
-        }
     }
 
     private static void opcionVerPedido() {
@@ -140,6 +131,15 @@ public class RestauranteElBuenSabor {
         Utilidades.reiniciar();
         System.out.println("Mesa reiniciada. Lista para nuevo cliente.");
         System.out.println();
+    }
+
+    private static void activarMesaSiEsNecesario() {
+        if (Datos.estadoMesa == 0) {
+            System.out.print("Ingrese numero de mesa: ");
+            int mesa = scanner.nextInt();
+            Datos.numeroMesaActual = mesa > 0 ? mesa : 1;
+            Datos.estadoMesa = 1;
+        }
     }
 
 }
