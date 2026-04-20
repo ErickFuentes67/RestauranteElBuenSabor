@@ -14,20 +14,14 @@ package restauranteelbuensabor;
 
 public class Utilidades {
 
-    public static boolean validar(){
+    public static boolean hayProductosEnPedido(){
 
-        int cont=0;int indice=0;
-        while(indice<Datos.cantidades.length){
-            if(Datos.cantidades[indice]>0){cont=cont+1;}
-            indice++;
-        }// fin while
-
-        // reinicia si no hay nada - efecto secundario no documentado
-        if(cont==0){
-            Datos.total=0;
+        for (int i = 0; i < Datos.cantidades.length; i++) {
+            if (Datos.cantidades[i] > 0) {
+                return true;
+            }
         }
-
-        return cont>0;
+        return false;
 
     }
 

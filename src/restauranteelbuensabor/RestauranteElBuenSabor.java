@@ -141,7 +141,8 @@ public class RestauranteElBuenSabor {
                 // ver pedido actual
                 System.out.println();
 
-                if(Utilidades.validar()){
+                if(Utilidades.hayProductosEnPedido
+()){
 
                     ImpresionFactura.mostrarPedido();
                 }
@@ -163,7 +164,8 @@ public class RestauranteElBuenSabor {
                 // generar factura
                 System.out.println();
 
-                if(Utilidades.validar()){
+                if(Utilidades.hayProductosEnPedido
+()){
 
                     double r=0;
 
