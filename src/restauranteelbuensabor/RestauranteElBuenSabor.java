@@ -27,12 +27,15 @@ public class RestauranteElBuenSabor {
             int opcionMenu = scanner.nextInt();
 
             if (opcionMenu == 1) {
-                break;
+                opcionVerCarta();
 
-            } else if (opcionMenu == 0) {
+
+            }
+            else if (opcionMenu == 0) {
                 ejecutando = false;
                 System.out.println("Hasta luego!");
-            } else {
+            }
+            else {
                 System.out.println("Opcion no valida. Seleccione entre 0 y 5.");
             }
         }
@@ -53,6 +56,11 @@ public class RestauranteElBuenSabor {
         System.out.println("0. Salir");
         System.out.println(ImpresionFactura.Separador);
         System.out.print("Seleccione una opcion: ");
+    }
+
+    private static void opcionVerCarta() {
+        ImpresionFactura.mostrarCarta();
+        System.out.println();
     }
 
 }
