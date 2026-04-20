@@ -14,36 +14,32 @@ package restauranteelbuensabor;
 
 public class ImpresionFactura {
 
-    private static void imprimirEncabezado() {
-        System.out.println(Separador);
-        System.out.println(Nombre_Restaurante);
-        System.out.println(Direccion);
-        System.out.println("NIT: " + Nit);
-        System.out.println(Separador);
+    private static final String NOMBRE_RESTAURANTE = "     El Buen Sabor    ";
+    private static final String DIRECCION          = "Calle 15 #8-32, Valledupar";
+    private static final String NIT                = "900.123.456-7";
+    public  static final String SEPARADOR          = "========================================";
+
+    public static void imprimirEncabezado() {
+        System.out.println(SEPARADOR);
+        System.out.println(NOMBRE_RESTAURANTE);
+        System.out.println(DIRECCION);
+        System.out.println("NIT: " + NIT);
+        System.out.println(SEPARADOR);
     }
-
-    private static void imprimirItems() {
-        for (ItemPedido item : Datos.pedidoActual.getItems()) {
-            System.out.printf("%-20s x%-6d $%,.0f%n",
-                    item.getProducto().getNombre(),
-                    item.getCantidad(),
-                    item.calcularSubtotal());
-        }
-    }
-
-
-    private static final String Nombre_Restaurante  = "     El Buen Sabor    ";
-    private static final String Direccion           = "Calle 15 #8-32, Valledupar";
-    private static final String Nit                 = "900.123.456-7";
-    public static final String Separador           = "========================================";
-
 
     public static void mostrarCarta() {
+        imprimirEncabezado();
+        System.out.println("    --- NUESTRA CARTA ---");
+        System.out.println(SEPARADOR);
+
         int numero = 1;
         for (Producto producto : Datos.carta) {
             System.out.printf("%d. %-22s $%,.0f%n",
-                    numero++, producto.getNombre(), producto.getPrecio());
+                    numero++,
+                    producto.getNombre(),
+                    producto.getPrecio());
         }
+        System.out.println(SEPARADOR);
     }
 
     public static void mostrarPedido() {
@@ -60,48 +56,56 @@ public class ImpresionFactura {
         System.out.printf("%-27s $%,.0f%n", "Subtotal:", Datos.pedidoActual.calcularSubtotal());
     }
 
-
     public static void imprimirFacturaCompleta() {
-        ResultadoFactura resultado = CalculadorFactura.calcularTotalFactura();
+        Factura factura = new Factura(Datos.pedidoActual, Datos.numeroFactura);
 
         imprimirEncabezado();
-        System.out.printf("FACTURA No. %03d%n", Datos.numeroFactura);
+        System.out.printf("FACTURA No. %03d%n", factura.getNumero());
         System.out.println("----------------------------------------");
         imprimirItems();
         System.out.println("----------------------------------------");
-        System.out.printf("%-27s $%,.0f%n", "Subtotal:", resultado.subtotal);
-        System.out.printf("%-27s $%,.0f%n", "IVA (19%):", resultado.iva);
+        System.out.printf("%-27s $%,.0f%n", "Subtotal:",      factura.calcularSubtotalConDescuento());
+        System.out.printf("%-27s $%,.0f%n", "IVA (19%):",     factura.calcularIVA());
 
-        if (resultado.propina > 0) {
-            System.out.printf("%-27s $%,.0f%n", "Propina (10%):", resultado.propina);
+        if (factura.calcularPropina() > 0) {
+            System.out.printf("%-27s $%,.0f%n", "Propina (10%):", factura.calcularPropina());
         }
 
         System.out.println("----------------------------------------");
-        System.out.printf("%-27s $%,.0f%n", "TOTAL:", resultado.total);
-        System.out.println(Separador);
+        System.out.printf("%-27s $%,.0f%n", "TOTAL:", factura.calcularTotal());
+        System.out.println(SEPARADOR);
         System.out.println("Gracias por su visita!");
-        System.out.println(Nombre_Restaurante + " - Valledupar");
-        System.out.println(Separador);
+        System.out.println(NOMBRE_RESTAURANTE + " - Valledupar");
+        System.out.println(SEPARADOR);
 
         Datos.numeroFactura++;
         Datos.estadoMesa = 0;
     }
 
     public static void imprimirFacturaResumen() {
-        ResultadoFactura resultado = CalculadorFactura.calcularTotalFactura();
+        Factura factura = new Factura(Datos.pedidoActual, Datos.numeroFactura);
 
         imprimirEncabezado();
-        System.out.printf("FACTURA No. %03d (RESUMEN)%n", Datos.numeroFactura);
+        System.out.printf("FACTURA No. %03d (RESUMEN)%n", factura.getNumero());
         System.out.println("----------------------------------------");
-        System.out.printf("%-27s $%,.0f%n", "Subtotal:", resultado.subtotal);
-        System.out.printf("%-27s $%,.0f%n", "IVA (19%):", resultado.iva);
+        System.out.printf("%-27s $%,.0f%n", "Subtotal:",      factura.calcularSubtotalConDescuento());
+        System.out.printf("%-27s $%,.0f%n", "IVA (19%):",     factura.calcularIVA());
 
-        if (resultado.propina > 0) {
-            System.out.printf("%-27s $%,.0f%n", "Propina (10%):", resultado.propina);
+        if (factura.calcularPropina() > 0) {
+            System.out.printf("%-27s $%,.0f%n", "Propina (10%):", factura.calcularPropina());
         }
 
         System.out.println("----------------------------------------");
-        System.out.printf("%-27s $%,.0f%n", "TOTAL:", resultado.total);
-        System.out.println(Separador);
+        System.out.printf("%-27s $%,.0f%n", "TOTAL:", factura.calcularTotal());
+        System.out.println(SEPARADOR);
+    }
+
+    private static void imprimirItems() {
+        for (ItemPedido item : Datos.pedidoActual.getItems()) {
+            System.out.printf("%-20s x%-6d $%,.0f%n",
+                    item.getProducto().getNombre(),
+                    item.getCantidad(),
+                    item.calcularSubtotal());
+        }
     }
 }
