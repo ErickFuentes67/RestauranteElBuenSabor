@@ -10,7 +10,8 @@ public class Pedido {
     public void agregarItem(Producto producto, int cantidad) {
         for (ItemPedido item : items) {
             if (item.getProducto() == producto) {
-                item.agregarCantidad(cantidad);  // si ya existe, suma la cantidad
+                item.agregarCantidad(cantidad);  //// Si el producto ya existe en el pedido, suma la cantidad en lugar de duplicar el item
+
                 return;
             }
         }
