@@ -4,7 +4,6 @@
  */
 package restauranteelbuensabor;
 
-
 /**
  *
  * @author alfre
@@ -15,10 +14,31 @@ package restauranteelbuensabor;
 
 public class ImpresionFactura {
 
+    private static void imprimirEncabezado() {
+        System.out.println(Separador);
+        System.out.println(Nombre_Restaurante);
+        System.out.println(Direccion);
+        System.out.println("NIT: " + Nit);
+        System.out.println(Separador);
+    }
+
+    private static void imprimirItems() {
+        for (int i = 0; i < Datos.nombres.length; i++) {
+            if (Datos.cantidades[i] > 0) {
+                System.out.printf("%-20s x%-6d $%,.0f%n",
+                        Datos.nombres[i],
+                        Datos.cantidades[i],
+                        Datos.precios[i] * Datos.cantidades[i]);
+            }
+        }
+    }
+
+
     private static final String Nombre_Restaurante  = "     El Buen Sabor    ";
     private static final String Direccion           = "Calle 15 #8-32, Valledupar";
     private static final String Nit                 = "900.123.456-7";
     public static final String Separador           = "========================================";
+
 
     public static void mostrarCarta(){
 
@@ -63,130 +83,48 @@ public class ImpresionFactura {
 
     }
 
-    public static void imprimirFacturaCompleta(){
 
-        double subtotal=0;double iva=0;double total=0;double prop=0;int cont=0;double aux=0;
+    public static void imprimirFacturaCompleta() {
+        ResultadoFactura resultado = CalculadorFactura.calcularTotalFactura();
 
-        // calcula subtotal otra vez
-        int indice=0;while(indice<Datos.nombres.length){
+        imprimirEncabezado();
+        System.out.printf("FACTURA No. %03d%n", Datos.numeroFactura);
+        System.out.println("----------------------------------------");
+        imprimirItems();
+        System.out.println("----------------------------------------");
+        System.out.printf("%-27s $%,.0f%n", "Subtotal:", resultado.subtotal);
+        System.out.printf("%-27s $%,.0f%n", "IVA (19%):", resultado.iva);
 
-            if(Datos.cantidades[indice]>0){
-                subtotal=subtotal+Datos.precios[indice]*Datos.cantidades[indice];cont=cont+1;
-
-            }
-            indice++;
-
-        }// fin while
-
-        if(cont>3){aux=subtotal-(subtotal*0.05);}else{aux=subtotal;}
-
-        if(aux>50000){
-            iva=aux*0.19;
-            total=aux+iva;
-            prop=total*0.10;
-            total=total+prop;
+        if (resultado.propina > 0) {
+            System.out.printf("%-27s $%,.0f%n", "Propina (10%):", resultado.propina);
         }
 
-        else{
-            iva=aux*0.19;
-            total=aux+iva;
-            prop=0;
-        }// fin if-else
-
-        String sep="========================================";
-        System.out.println(sep);
-        System.out.println("    RESTAURANTE EL BUEN SABOR");
-        System.out.println("    Calle 15 #8-32, Valledupar");
-        System.out.println("    NIT: 900.123.456-7");
-        System.out.println(sep);
-        System.out.printf("FACTURA No. %03d%n",Datos.numeroFactura);
         System.out.println("----------------------------------------");
-
-        // imprime cada item del pedido
-        int j=0;while(j<Datos.nombres.length){
-            if(Datos.cantidades[j]>0){
-            System.out.printf("%-20s x%-6d $%,.0f%n",Datos.nombres[j],Datos.cantidades[j],(Datos.precios[j]*Datos.cantidades[j]));}
-            j++;
-        }// fin while
-
-        System.out.println("----------------------------------------");
-        System.out.printf("%-27s $%,.0f%n","Subtotal:",aux);
-        System.out.printf("%-27s $%,.0f%n","IVA (19%):",iva);
-
-        if(prop>0){
-            System.out.printf("%-27s $%,.0f%n","Propina (10%):",prop);
-        }// fin if prop
-
-        System.out.println("----------------------------------------");
-
-        System.out.printf("%-27s $%,.0f%n","totalAL:",total);
-        System.out.println(sep);
-
+        System.out.printf("%-27s $%,.0f%n", "TOTAL:", resultado.total);
+        System.out.println(Separador);
         System.out.println("Gracias por su visita!");
-        System.out.println("El Buen Sabor - Valledupar");
-        System.out.println(sep);
+        System.out.println(Nombre_Restaurante + " - Valledupar");
+        System.out.println(Separador);
 
-        // actualiza estado e incrementa factura - tres responsabilidades en un metodo
-        Datos.numeroFactura=Datos.numeroFactura+1;
-        Datos.estadoMesa=0;
-        Datos.total=total;
-
+        Datos.numeroFactura++;
+        Datos.estadoMesa = 0;
     }
 
-    public static void imprimirFacturaResumen(){
+    public static void imprimirFacturaResumen() {
+        ResultadoFactura resultado = CalculadorFactura.calcularTotalFactura();
 
-        double subtotal=0;double iva=0;double total=0;double prop=0;int cont=0;double aux=0;
+        imprimirEncabezado();
+        System.out.printf("FACTURA No. %03d (RESUMEN)%n", Datos.numeroFactura);
+        System.out.println("----------------------------------------");
+        System.out.printf("%-27s $%,.0f%n", "Subtotal:", resultado.subtotal);
+        System.out.printf("%-27s $%,.0f%n", "IVA (19%):", resultado.iva);
 
-        // calcula subtotalal otra vez igual que en imprimirFacturaCompleta
-        int indice=0;while(indice<Datos.nombres.length){
-
-            if(Datos.cantidades[indice]>0){
-               subtotal=subtotal+Datos.precios[indice]*Datos.cantidades[indice];cont=cont+1;
-            }
-
-            indice++;
-
-        }// fin while
-
-        if(cont>3){aux=subtotal-(subtotal*0.05);}else{aux=subtotal;}
-
-        if(aux>50000){
-
-            iva=aux*0.19;
-            total=aux+iva;
-            prop=total*0.10;
-            total=total+prop;
+        if (resultado.propina > 0) {
+            System.out.printf("%-27s $%,.0f%n", "Propina (10%):", resultado.propina);
         }
 
-        else{
-
-            iva=aux*0.19;
-            total=aux+iva;
-            prop=0;
-
-        }// fin if-else
-
-        String sep="========================================";
-        System.out.println(sep);
-
-        System.out.println("    RESTAURANTE EL BUEN SABOR");
-        System.out.println("    Calle 15 #8-32, Valledupar");
-        System.out.println("    NIT: 900.123.456-7");
-
-        System.out.println(sep);
-        System.out.printf("FACTURA No. %03d (RESUMEN)%n",Datos.numeroFactura);
         System.out.println("----------------------------------------");
-
-        System.out.printf("%-27s $%,.0f%n","Subtotal:",aux);
-        System.out.printf("%-27s $%,.0f%n","IVA (19%):",iva);
-
-        if(prop>0){
-          System.out.printf("%-27s $%,.0f%n","Propina (10%):",prop);
-        }// fin if prop
-
-        System.out.println("----------------------------------------");
-        System.out.printf("%-27s $%,.0f%n","TOTAL:",total);
-        System.out.println(sep);
-
+        System.out.printf("%-27s $%,.0f%n", "TOTAL:", resultado.total);
+        System.out.println(Separador);
     }
 }

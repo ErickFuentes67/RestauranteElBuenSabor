@@ -13,6 +13,20 @@ package restauranteelbuensabor;
 
 public class CalculadorFactura {
 
+    public static ResultadoFactura calcularTotalFactura() {
+        double subtotal = calcularSubtotal();
+        int items = contarItems();
+        double conDescuento = aplicarDescuento(subtotal, items);
+        double iva = calcularIVA(conDescuento);
+        double propina = calcularPropina(conDescuento);
+
+        Datos.estadoMesa = 1;
+        Datos.total = conDescuento + iva + propina;
+
+        return new ResultadoFactura(conDescuento, iva, propina);
+    }
+
+
     private static final double Tasa_IVA = 0.19;
     private static final double Tasa_Propina   = 0.10;
     private static final double Tasa_Descuento = 0.05;
