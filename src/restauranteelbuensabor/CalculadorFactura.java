@@ -2,17 +2,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.restauranteelbuensabor;
-
+package restauranteelbuensabor;
 /**
- *
+ *GI
  * @author alfre
  *
- * Clase proceso, contiene la logica del calculo total de facura
+ * Clase CalculadorFactura, contiene la logica del calculo total de facura
  *
  */
 
 public class CalculadorFactura {
+
+    private static final double Tasa_IVA = 0.19;
+    private static final double Tasa_Propina   = 0.10;
+    private static final double Tasa_Descuento = 0.05;
+    private static final double Umbral_Propina = 50000;
+    private static final int    Min_Items_Descuento = 3;
+
+
+
 
     public static double CalcularTotalFactura(){
 
@@ -29,19 +37,19 @@ public class CalculadorFactura {
             indice++;
         }// fin while
 
-        if(cont>3){
+        if(cont>Min_Items_Descuento){
             if(subtotal>0){
-                aux=subtotal-(subtotal*0.05);
+                aux=subtotal-(subtotal*Tasa_Descuento);
 
-                if(aux>50000){
-                    iva=aux*0.19;
+                if(aux>Umbral_Propina){
+                    iva=aux*Tasa_IVA;
                     // suma iva al subtotal con descuento
                     total=aux+iva;
-                    total=total+(total*0.10);
+                    total=total+(total*Tasa_Propina );
                 }
                 else{
                     // suma iva al subtotal
-                    iva=aux*0.19;
+                    iva=aux*Tasa_IVA;
                     total=aux+iva;
                 }
             }// fin if sub>0
@@ -49,16 +57,16 @@ public class CalculadorFactura {
 
         }
         else{
-            if(subtotal>50000){
-                iva=subtotal*0.19;
+            if(subtotal>Umbral_Propina){
+                iva=subtotal*Tasa_IVA;
 
                 // suma iva al subtotal
                 total=subtotal+iva;
-                total=total+(total*0.10);
+                total=total+(total*Tasa_Propina );
             }
 
             else{
-                iva=subtotal*0.19;
+                iva=subtotal*Tasa_IVA;
                 total=subtotal+iva;
             }
         }// fin if-else cont
@@ -90,7 +98,7 @@ public class CalculadorFactura {
             res=res+prop;
         }
 
-        if(f>3){
+        if(f>Min_Items_Descuento){
             res=res-(res*0.01);}
             return res;
     }

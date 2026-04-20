@@ -2,7 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.restauranteelbuensabor;
+package restauranteelbuensabor;
+
 
 /**
  *
@@ -13,6 +14,10 @@ package com.mycompany.restauranteelbuensabor;
  */
 
 public class ImpresionFactura {
+
+    private static final String NOMBRE_RESTAURANTE  = "El Buen Sabor";
+    private static final String DIRECCION           = "Calle 15 #8-32, Valledupar";
+    private static final String NIT                 = "900.123.456-7";
 
     public static void mostrarCarta(){
 
