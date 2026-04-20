@@ -23,13 +23,11 @@ public class ImpresionFactura {
     }
 
     private static void imprimirItems() {
-        for (Producto producto : Datos.carta) {
-            if (producto.getCantidad() > 0) {
-                System.out.printf("%-20s x%-6d $%,.0f%n",
-                        producto.getNombre(),
-                        producto.getCantidad(),
-                        producto.calcularSubtotal());
-            }
+        for (ItemPedido item : Datos.pedidoActual.getItems()) {
+            System.out.printf("%-20s x%-6d $%,.0f%n",
+                    item.getProducto().getNombre(),
+                    item.getCantidad(),
+                    item.calcularSubtotal());
         }
     }
 
@@ -49,17 +47,17 @@ public class ImpresionFactura {
     }
 
     public static void mostrarPedido() {
-        double subtotal = 0;
-        for (Producto producto : Datos.carta) {
-            if (producto.getCantidad() > 0) {
-                System.out.printf("%-20s x%-6d $%,.0f%n",
-                        producto.getNombre(),
-                        producto.getCantidad(),
-                        producto.calcularSubtotal());
-                subtotal += producto.calcularSubtotal();
-            }
+        System.out.println("--- PEDIDO ACTUAL ---");
+
+        for (ItemPedido item : Datos.pedidoActual.getItems()) {
+            System.out.printf("%-20s x%-6d $%,.0f%n",
+                    item.getProducto().getNombre(),
+                    item.getCantidad(),
+                    item.calcularSubtotal());
         }
-        System.out.printf("%-27s $%,.0f%n", "Subtotal:", subtotal);
+
+        System.out.println("--------------------");
+        System.out.printf("%-27s $%,.0f%n", "Subtotal:", Datos.pedidoActual.calcularSubtotal());
     }
 
 
