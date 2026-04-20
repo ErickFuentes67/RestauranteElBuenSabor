@@ -59,15 +59,13 @@ public class RestauranteElBuenSabor {
 
 
                 System.out.println("--- AGREGAR PRODUCTO ---");
-                System.out.print("Numero de producto (1-"+Datos.carta.length
-+"): ");
+                System.out.print("Numero de producto (1-"+Datos.carta.length +"): ");
 
                 int n=scanner.nextInt();
                 System.out.print("Cantidad: ");
                 int cantidad=scanner.nextInt();
 
-                if(n>0&&n<=Datos.carta.length
-){
+                if(n>0&&n<=Datos.carta.length){
 
                     if(cantidad>0){
 
@@ -91,7 +89,7 @@ public class RestauranteElBuenSabor {
 
                             }// fin if numeroMesaActual>0
 
-                        }// fin if est==0
+                        }
 
                         // agrega al pedido
                         Datos.carta[n - 1].agregarCantidad(cantidad);
@@ -115,7 +113,7 @@ public class RestauranteElBuenSabor {
 
                         }
 
-                    }// fin if c>0
+                    }
 
                 }
 
@@ -128,11 +126,10 @@ public class RestauranteElBuenSabor {
 
                     else{
 
-                     System.out.println("Producto no existe. La carta tiene "+Datos.carta.length
-+" productos.");
+                     System.out.println("Producto no existe. La carta tiene "+Datos.carta.length +" productos.");
                     }
 
-                }// fin if n>0
+                }
 
                 System.out.println();
 
@@ -142,8 +139,7 @@ public class RestauranteElBuenSabor {
                 // ver pedido actual
                 System.out.println();
 
-                if(Utilidades.hayProductosEnPedido
-()){
+                if(Utilidades.hayProductosEnPedido()){
 
                     ImpresionFactura.mostrarPedido();
                 }
@@ -165,8 +161,7 @@ public class RestauranteElBuenSabor {
                 // generar factura
                 System.out.println();
 
-                if(Utilidades.hayProductosEnPedido
-()){
+                if(Utilidades.hayProductosEnPedido()){
 
                     double r=0;
 
@@ -191,7 +186,7 @@ public class RestauranteElBuenSabor {
                     // reiniciar variables locales
                     tmp=0;aux="";numeroMesa=0;continuar=true;
 
-                }// fin if validar
+                }
 
             }
 
@@ -219,7 +214,7 @@ public class RestauranteElBuenSabor {
 
                 // opcion no reconocida
                 System.out.println("Opcion no valida. Seleccione entre 0 y 5.");
-                Scanner sc2=new Scanner(System.in);
+
                 x=x+1;
 
                 if(x>3){
@@ -228,16 +223,16 @@ public class RestauranteElBuenSabor {
                     x=0;
 
                     // limpiar buffer con segundo scanner - innecesario
-                    String s2=sc2.hasNextLine()?sc2.nextLine():"";
+                    String s2=scanner.hasNextLine()?scanner.nextLine():"";
 
-                }// fin if x>3
+                }
 
-            }// fin if-else op
+            }
 
-        }// fin while
+        }
 
         scanner.close();
 
-    }// fin main
+    }
 
 }
