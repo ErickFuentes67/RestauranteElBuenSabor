@@ -33,16 +33,6 @@ public class CalculadorFactura {
     }
 
 
-    private static int contarItems() {
-        int contador = 0;
-        for (Producto producto : Datos.carta) {
-            if (producto.getCantidad() > 0) {
-                contador++;
-            }
-        }
-        return contador;
-    }
-
     private static double aplicarDescuento(double subtotal, int cantidadItems) {
         if (cantidadItems > Min_Items_Descuento) {
             return subtotal - (subtotal * Tasa_Descuento);
