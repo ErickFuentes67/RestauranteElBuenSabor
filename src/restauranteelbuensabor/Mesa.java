@@ -12,6 +12,7 @@ public class Mesa {
     public static int  getNumero()   { return numeroMesaActual; }
     public static boolean estaActiva() { return activa; }
 
+    // Mesa inválida (0 o negativa) se asigna como mesa 1 para no bloquear el flujo
     public static void activar(int numero) {
         numeroMesaActual = numero > 0 ? numero : 1;
         activa = true;
