@@ -33,7 +33,7 @@ public class ImpresionFactura {
         System.out.println(SEPARADOR);
 
         int numero = 1;
-        for (Producto producto : Datos.carta) {
+        for (Producto producto : Carta.getProductos()) {
             System.out.printf("%d. %-22s $%,.0f%n",
                     numero++,
                     producto.getNombre(),
@@ -79,7 +79,7 @@ public class ImpresionFactura {
         System.out.println(SEPARADOR);
 
         Datos.numeroFactura++;
-        Datos.estadoMesa = 0;
+        Mesa.reiniciar();
     }
 
     public static void imprimirFacturaResumen() {

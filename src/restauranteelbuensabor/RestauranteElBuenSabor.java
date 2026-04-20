@@ -78,13 +78,13 @@ public class RestauranteElBuenSabor {
 
     private static void opcionAgregarProducto() {
         System.out.println("--- AGREGAR PRODUCTO ---");
-        System.out.print("Numero de producto (1-" + Datos.carta.length + "): ");
+        System.out.print("Numero de producto (1-" + Carta.cantidadProductos() + "): ");
         int n = scanner.nextInt();
         System.out.print("Cantidad: ");
         int cantidad = scanner.nextInt();
 
-        if (n <= 0 || n > Datos.carta.length) {
-            System.out.println("Producto no existe. La carta tiene " + Datos.carta.length + " productos.");
+        if (n <= 0 || n > Carta.cantidadProductos()) {
+            System.out.println("Producto no existe. La carta tiene " + Carta.cantidadProductos() + " productos.");
             System.out.println();
             return;
         }
@@ -97,9 +97,9 @@ public class RestauranteElBuenSabor {
 
         activarMesaSiEsNecesario();
 
-        Datos.pedidoActual.agregarItem(Datos.carta[n - 1], cantidad); // ← usa Pedido
+        Datos.pedidoActual.agregarItem(Carta.getProducto(n - 1), cantidad);
         System.out.println("Producto agregado al pedido.");
-        System.out.println("  -> " + Datos.carta[n - 1].getNombre() + " x" + cantidad);
+        System.out.println("  -> " + Carta.getProducto(n - 1).getNombre() + " x" + cantidad);
         System.out.println();
     }
 
@@ -134,11 +134,10 @@ public class RestauranteElBuenSabor {
     }
 
     private static void activarMesaSiEsNecesario() {
-        if (Datos.estadoMesa == 0) {
+        if (!Mesa.estaActiva()) {                    // ← Mesa
             System.out.print("Ingrese numero de mesa: ");
-            int mesa = scanner.nextInt();
-            Datos.numeroMesaActual = mesa > 0 ? mesa : 1;
-            Datos.estadoMesa = 1;
+            int numero = scanner.nextInt();
+            Mesa.activar(numero);                    // ← Mesa
         }
     }
 

@@ -15,12 +15,12 @@ package restauranteelbuensabor;
 public class Utilidades {
 
     public static boolean hayProductosEnPedido() {
-        return Datos.pedidoActual.tieneProductos(); // Pedido ya sabe si tiene items
+        return Datos.pedidoActual.tieneProductos();
     }
 
     public static void reiniciar() {
-        Datos.pedidoActual.limpiar();               // Pedido sabe limpiarse solo
-        Datos.estadoMesa       = 0;
-        Datos.numeroMesaActual = 0;
+        Datos.pedidoActual.limpiar();
+        Mesa.reiniciar();
+        Datos.numeroFactura = 1;
     }
 }
