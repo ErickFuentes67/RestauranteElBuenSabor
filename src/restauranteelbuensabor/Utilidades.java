@@ -31,12 +31,13 @@ public class Utilidades {
 
     }
 
-    public static void reiniciar(){
-
-        int indice=0;while(indice<Datos.cantidades.length){
-            Datos.cantidades[indice]=0;indice++;
+    public static void reiniciar() {
+        for (int i = 0; i < Datos.cantidades.length; i++) {
+            Datos.cantidades[i] = 0;
         }
+        Datos.total = 0;
+        Datos.estadoMesa = 0;
+        Datos.numeroMesaActual = 0;
 
-        Datos.total=0;Datos.estadoMesa=0;Datos.numeroMesaActual=0;
     }
 }
