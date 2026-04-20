@@ -31,7 +31,7 @@ public class Factura {
     public double calcularDescuento() {
         if (pedido.contarItemsDiferentes() > MIN_ITEMS_DESCUENTO) {
             return calcularSubtotal() * TASA_DESCUENTO;
-        }
+        } // El descuento aplica solo si hay más de 3 productos diferentes en el pedido
         return 0;
     }
 
@@ -46,7 +46,7 @@ public class Factura {
     public double calcularPropina() {
         if (calcularSubtotalConDescuento() > UMBRAL_PROPINA) {
             return calcularSubtotalConDescuento() * TASA_PROPINA;
-        }
+        } // La propina aplica sobre el subtotal con descuento, antes del IVA
         return 0;
     }
 
@@ -54,3 +54,4 @@ public class Factura {
         return calcularSubtotalConDescuento() + calcularIVA() + calcularPropina();
     }
 }
+
