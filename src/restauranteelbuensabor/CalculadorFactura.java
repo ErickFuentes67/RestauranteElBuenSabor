@@ -21,85 +21,65 @@ public class CalculadorFactura {
 
 
 
-
     public static double CalcularTotalFactura(){
 
-        double subtotal=0;double iva=0;double total=0;double aux=0;int cont=0;int indice=0;
+        double subtotal = calcularSubtotal();
+        int cantidadItems = contarItems();
 
-        while(indice<Datos.nombres.length){
+        double subtotalConDescuento = aplicarDescuento(subtotal, cantidadItems);
+        double iva = calcularIVA(subtotalConDescuento);
+        double propina = calcularPropina(subtotalConDescuento);
 
-            if(Datos.cantidades[indice]>0){
+        double total = subtotalConDescuento + iva + propina;
 
-                // multiplica precio por cantidad
-                subtotal=subtotal+Datos.precios[indice]*Datos.cantidades[indice];
-                cont=cont+1;
-            }
-            indice++;
-        }// fin while
+        // ⚠️ esto idealmente debería salir de aquí (Nivel 4)
+        Datos.estadoMesa = 1;
+        Datos.total = total;
 
-        if(cont>Min_Items_Descuento){
-            if(subtotal>0){
-                aux=subtotal-(subtotal*Tasa_Descuento);
-
-                if(aux>Umbral_Propina){
-                    iva=aux*Tasa_IVA;
-                    // suma iva al subtotal con descuento
-                    total=aux+iva;
-                    total=total+(total*Tasa_Propina );
-                }
-                else{
-                    // suma iva al subtotal
-                    iva=aux*Tasa_IVA;
-                    total=aux+iva;
-                }
-            }// fin if sub>0
-
-
-        }
-        else{
-            if(subtotal>Umbral_Propina){
-                iva=subtotal*Tasa_IVA;
-
-                // suma iva al subtotal
-                total=subtotal+iva;
-                total=total+(total*Tasa_Propina );
-            }
-
-            else{
-                iva=subtotal*Tasa_IVA;
-                total=subtotal+iva;
-            }
-        }// fin if-else cont
-
-        Datos.estadoMesa=1;Datos.total=total;
         return total;
 
     }
 
-    public static double procesar(double a,double b,double c,double d,double e,int f,boolean g){
+    private static double calcularSubtotal() {
+        double subtotal = 0;
 
-        double res=0;double iva=0;double prop=0;double tmp=0;
-
-        // calcula subtotal con cantidad
-        res=a*b;
-
-        if(c>0){
-        // aplica descuento
-            res=res-(res*c);
+        for (int i = 0; i < Datos.nombres.length; i++) {
+            if (Datos.cantidades[i] > 0) {
+                subtotal += Datos.precios[i] * Datos.cantidades[i];
+            }
         }
 
-        // calcula iva
-        iva=res*d;tmp=iva;
-        res=res+tmp;
-
-        if(g){
-            // aplica propina si corresponde
-            prop=res*e;
-            res=res+prop;
-        }
-
-        if(f>Min_Items_Descuento){
-            res=res-(res*0.01);}
-            return res;
+        return subtotal;
     }
+
+    private static int contarItems() {
+        int contador = 0;
+
+        for (int i = 0; i < Datos.nombres.length; i++) {
+            if (Datos.cantidades[i] > 0) {
+                contador++;
+            }
+        }
+
+        return contador;
+    }
+
+    private static double aplicarDescuento(double subtotal, int cantidadItems) {
+        if (cantidadItems > Min_Items_Descuento) {
+            return subtotal - (subtotal * Tasa_Descuento);
+        }
+        return subtotal;
+    }
+
+    private static double calcularIVA(double base) {
+        return base * Tasa_IVA;
+    }
+
+    private static double calcularPropina(double base) {
+        if (base > Umbral_Propina) {
+            return base * Tasa_Propina;
+        }
+        return 0;
+    }
+
 }
