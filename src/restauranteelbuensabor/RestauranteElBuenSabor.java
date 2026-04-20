@@ -38,6 +38,10 @@ public class RestauranteElBuenSabor {
                 opcionVerPedido();
             }
 
+            else if (opcionMenu == 4){
+                opcionGenerarFactura();
+            }
+
             else if (opcionMenu == 0) {
                 ejecutando = false;
                 System.out.println("Hasta luego!");
@@ -116,6 +120,18 @@ public class RestauranteElBuenSabor {
             System.out.println("Use la opcion 2 para agregar productos.");
         }
         System.out.println();
+    }
+
+    private static void opcionGenerarFactura() {
+        System.out.println();
+        if (Utilidades.hayProductosEnPedido()) {
+            ImpresionFactura.imprimirFacturaCompleta();
+            System.out.println();
+        } else {
+            System.out.println("No se puede generar factura.");
+            System.out.println("No hay productos en el pedido.");
+            System.out.println("Use la opcion 2 para agregar productos primero.");
+        }
     }
 
 
